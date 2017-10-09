@@ -1,0 +1,41 @@
+body {
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+    color: #00B7FF;
+}
+
+.draggable {
+    padding: 5px;
+    z-index: 1000000 !important;
+    width: 20%;
+}
+
+.resizable {
+    width: 100%;
+}
+
+.navbar {
+    background-color: #f9d617 !important;
+}
+
+.no-padding {
+    padding: 0% !important;
+}
+
+.no-margin {
+    margin: 0% !important;
+}
+
+.itemList {
+    padding: 10px !important;
+    border-style: solid !important;
+    border-color: #0053b6 !important;
+    border-radius: 3px;
+    border-width: 2px;
+}
+
+.active {
+    background-color: #f9d617 !important;
+}
