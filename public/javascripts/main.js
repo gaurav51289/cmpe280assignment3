@@ -1,12 +1,7 @@
 $(document).ready(function () {
 
     $( "#tabs" ).tabs();
-    $.ajax({
-        url:'http://localhost:3000/items/sofas',
-        success: function (result) {
-            listItems(result);
-        }
-    });
+    listItems('tabs-1', 'sofas');
 
     $('#tabs ul li a').click(function(e) {
         switch (e.target.id){
@@ -28,16 +23,33 @@ $(document).ready(function () {
     });
 });
 
+var itemURLs = [];
+
 function createDraggablesItems()
 {
-    var draggableItem = $(".draggable");
-    draggableItem.draggable({
-        start: function (event, ui) {
-            var item = event.target;
-        }
-    });
-    var resizableItem = $(".resizable");
-    resizableItem.resizable();
+    $(".draggable").draggable();
+    $(".resizable").resizable();
+
+}
+
+function createCheckboxWidget() {
+    var checkboxes = $("input[type='checkbox']");
+    checkboxes.checkboxradio();
+}
+
+function addItemToScene(index) {
+    var url = itemURLs[index];
+    var scene = $("#scene");
+    if(scene.has("#"+index).length !== 0){
+        scene.find("#"+index).remove();
+    } else {
+        scene.append('<div id="'+index+'" class="draggable">' +
+            '                   <div class="resizable">' +
+            '                       <img src="'+url+'" class="new-item-scene" />' +
+            '                   </div>' +
+            '               </div>');
+    }
+    createDraggablesItems();
 }
 
 function listItems(id, endpoint) {
@@ -46,14 +58,18 @@ function listItems(id, endpoint) {
         $.ajax({
             url:'http://localhost:3000/items/'+endpoint,
             success: function (results) {
-                results.forEach(function (item) {
+                itemURLs = results.map(function (item) {
+                    return item.url;
+                });
+                results.forEach(function (item, index) {
                     itemList.append('<div class="row no-margin">\n' +
+                        '                            <label for="checkbox-nested-'+index+'">Add to Scene and Try !!\n'+
+                        '                               <input type="checkbox" name="checkbox-nested-'+index+'" ' +
+                        '                                onclick="addItemToScene('+index+')"' +
+                        '                                id="checkbox-nested-'+index+'">\n'+
+                        '                            </label>\n' +
                         '                            <div class="media">\n' +
-                        '                                <div class="draggable">\n' +
-                        '                                    <div class="resizable">\n' +
-                        '                                        <img class="d-flex mr-3" src="'+item.url+'" alt="Sofa" style="width: 100%">\n' +
-                        '                                    </div>\n' +
-                        '                                </div>\n' +
+                        '                                <img class="d-flex mr-3" src="'+item.url+'" alt="Sofa" style="width: 20%">\n' +
                         '                                <div class="media-body">\n' +
                         '                                    <h5 class="mt-0">'+item.name+'</h5>\n' +
                         '                                    <p>'+item.price+'</p>\n' +
@@ -62,9 +78,10 @@ function listItems(id, endpoint) {
                         '                            </div>\n' +
                         '                        </div>');
                 });
+
+                createCheckboxWidget();
             }
         });
     }
-    createDraggablesItems();
 }
 

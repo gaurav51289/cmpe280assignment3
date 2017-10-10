@@ -6,20 +6,6 @@ a {
     color: #00B7FF;
 }
 
-.draggable {
-    padding: 5px;
-    z-index: 1000000 !important;
-    width: 20%;
-}
-
-.resizable {
-    width: 100%;
-}
-
-.navbar {
-    background-color: #f9d617 !important;
-}
-
 .no-padding {
     padding: 0% !important;
 }
@@ -27,6 +13,10 @@ a {
 .no-margin {
     margin: 0% !important;
 }
+
+/*#tabs ul li {*/
+    /*background-color: #0053b6;*/
+/*}*/
 
 .itemList {
     padding: 10px !important;
@@ -36,6 +26,22 @@ a {
     border-width: 2px;
 }
 
-.active {
-    background-color: #f9d617 !important;
+
+.selectable .ui-selecting { background: #FECA40; }
+.selectable .ui-selected { background: #F39814; color: white; }
+
+
+.new-item-scene{
+    width:90%;
+}
+
+.draggable{
+    z-index: 10000;
+    position: absolute;
+    top: 50%;
+    left: 40%;
+}
+
+.resizable{
+    width: 50%;
 }
