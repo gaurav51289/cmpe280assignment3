@@ -17,7 +17,7 @@ $(document).ready(function () {
                 listItems('tabs-2', 'sides');
                 break;
             case '3':
-                listItems('tabs-3', 'tvmedia');
+                listItems('tabs-3', 'chair');
                 break;
             case '4':
                 listItems('tabs-4', 'light');
@@ -47,6 +47,7 @@ function listItems(id, endpoint) {
             url:'http://localhost:3000/items/'+endpoint,
             success: function (results) {
                 results.forEach(function (item) {
+                    console.log(item);
                     itemList.append('<div class="row no-margin">\n' +
                         '                            <div class="media">\n' +
                         '                                <div class="draggable">\n' +
@@ -57,7 +58,7 @@ function listItems(id, endpoint) {
                         '                                <div class="media-body">\n' +
                         '                                    <h5 class="mt-0">'+item.name+'</h5>\n' +
                         '                                    <p>'+item.price+'</p>\n' +
-                        '                                    <p>This is an awesome Green Sofa.</p>\n' +
+                        '                                    <p>'+item.desc+'</p>\n' +
                         '                                </div>\n' +
                         '                            </div>\n' +
                         '                        </div>');
