@@ -6,6 +6,9 @@ a {
     color: #00B7FF;
 }
 
+.navbar {
+    background-color: #f9d617 !important;
+}
 .no-padding {
     padding: 0% !important;
 }
@@ -14,9 +17,6 @@ a {
     margin: 0% !important;
 }
 
-/*#tabs ul li {*/
-    /*background-color: #0053b6;*/
-/*}*/
 
 .itemList {
     padding: 10px !important;
@@ -32,7 +32,7 @@ a {
 
 
 .new-item-scene{
-    width:90%;
+    width:70%;
 }
 
 .draggable{
@@ -43,5 +43,5 @@ a {
 }
 
 .resizable{
-    width: 50%;
+    width: 80%;
 }

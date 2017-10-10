@@ -2,3 +2,8 @@
 
 1.  `npm install`
 2. `npm start`
+
+
+##Screenshot
+
+![Alt text](./screenshot.jpg?raw=true "IKEA")

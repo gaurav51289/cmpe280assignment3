@@ -12,7 +12,7 @@ $(document).ready(function () {
                 listItems('tabs-2', 'sides');
                 break;
             case '3':
-                listItems('tabs-3', 'tvmedia');
+                listItems('tabs-3', 'chair');
                 break;
             case '4':
                 listItems('tabs-4', 'light');
@@ -23,7 +23,7 @@ $(document).ready(function () {
     });
 });
 
-var itemURLs = [];
+var itemURLs = {};
 
 function createDraggablesItems()
 {
@@ -58,22 +58,20 @@ function listItems(id, endpoint) {
         $.ajax({
             url:'http://localhost:3000/items/'+endpoint,
             success: function (results) {
-                itemURLs = results.map(function (item) {
-                    return item.url;
-                });
-                results.forEach(function (item, index) {
+                results.forEach(function (item) {
+                    itemURLs[item.id] = item.url;
                     itemList.append('<div class="row no-margin">\n' +
-                        '                            <label for="checkbox-nested-'+index+'">Add to Scene and Try !!\n'+
-                        '                               <input type="checkbox" name="checkbox-nested-'+index+'" ' +
-                        '                                onclick="addItemToScene('+index+')"' +
-                        '                                id="checkbox-nested-'+index+'">\n'+
+                        '                            <label for="checkbox-nested-'+item.id+'">Add to Scene and Try !!\n'+
+                        '                               <input type="checkbox" name="checkbox-nested-'+item.id+'" ' +
+                        '                                onclick="addItemToScene('+item.id+')"' +
+                        '                                id="checkbox-nested-'+item.id+'">\n'+
                         '                            </label>\n' +
                         '                            <div class="media">\n' +
                         '                                <img class="d-flex mr-3" src="'+item.url+'" alt="Sofa" style="width: 20%">\n' +
                         '                                <div class="media-body">\n' +
                         '                                    <h5 class="mt-0">'+item.name+'</h5>\n' +
                         '                                    <p>'+item.price+'</p>\n' +
-                        '                                    <p>This is an awesome Green Sofa.</p>\n' +
+                        '                                    <p>'+item.desc+'</p>\n' +
                         '                                </div>\n' +
                         '                            </div>\n' +
                         '                        </div>');
